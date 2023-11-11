@@ -72,9 +72,7 @@ def upload_score_pdf(student_id, score):
 
     time.sleep(5)
     driver.find_element(By.CSS_SELECTOR, "#auditReport_form_auditNote_uploadModal > div > div > div.modal-footer > div.buttons.text-center > button").click()
-    driver.implicitly_wait(15)
     driver.find_element(By.CSS_SELECTOR, "#auditReport_form > div.form-group.fs-form-buttons > div > button.btn.btn-primary").click()
-    driver.implicitly_wait(15)
 
     driver.switch_to.default_content()
     time.sleep(2)
@@ -85,4 +83,5 @@ manual_login()
 manual_role()
 print(data)
 for student_id, score in data:
+    score = "100" if float(score) >= 100 else score
     upload_score_pdf(student_id, score)
